@@ -11,6 +11,9 @@ public class Sketch extends PApplet {
   double x_friction = 0;
   double y_friction = 0;
 
+  int xRemember = 400;
+  int yRemember = 400;
+
 	boolean upPressed = false;
   boolean downPressed = false;
   boolean rightPressed = false;
@@ -18,7 +21,11 @@ public class Sketch extends PApplet {
 
   int width = 800;
   int height = 800;
-  
+
+  int i = 0;
+
+  boolean makeWave = false;
+
   PImage character;
   
   /**
@@ -45,7 +52,7 @@ public class Sketch extends PApplet {
     background(60, 200, 190);
     image(character, x - 97, y - 72);  
     
-	  println(upPressed + " " + downPressed + " " + leftPressed + " " +  rightPressed + " " +  x_speed + " " + y_speed);
+	  println(upPressed + " " + downPressed + " " + leftPressed + " " +  rightPressed + " " +  x_speed + " " + y_speed + " " + makeWave);
 
     if (upPressed) {
       y_speed -= 3.5;
@@ -97,7 +104,7 @@ public class Sketch extends PApplet {
     x = (int) (x + (int) x_speed);
     y = (int) (y + (int) y_speed);
     
-
+    wavePos(xRemember, yRemember);
     
     
 
@@ -116,6 +123,18 @@ public class Sketch extends PApplet {
     if (key == 97){
       rightPressed = true;
     }
+    if (key == 101){
+      //makeWave = true;
+      xRemember = x;
+      yRemember = y;
+      i = 0;
+    }
+    if (key == CODED){
+      if (keyCode == SHIFT){
+        x = 400;
+        y = 400;
+      }
+    }
   }
   
   public void keyReleased() {
@@ -131,8 +150,35 @@ public class Sketch extends PApplet {
     if (key == 97){
       rightPressed = false;
     }
+    if (key == 101){
+      //makeWave = false;
+    }
   }
   
   
   // define other methods down here.
+  public void surfaceWave(int xWave, int yWave, int waveEnd, int wavelength){
+    stroke(0);
+    noFill();
+    ellipse(xWave, yWave, 0, 0);
+    for (int wavePropogate = 1; wavePropogate < waveEnd; wavePropogate += wavelength){
+        stroke(0);
+        noFill();
+        ellipse(xWave, yWave, wavePropogate, wavePropogate);
+      }
+    }
+  public void wavePos(int xPos, int yPos){
+
+  
+    if (makeWave = true){
+      surfaceWave(xPos, yPos, i*i, i);
+      i += 1;
+    }
+/*
+    if (frameCount > 180){
+      frameCount = 0;
+      makeWave = false;
+      i = 0;
+    }*/
+  }  
 }
