@@ -32,7 +32,10 @@ public class Sketch extends PApplet {
 
   int[] yArray = new int[100];
 
+  int[] lengthArray = new int[100];
+
   int objectArray = 0;
+
   
   /**
    * Called once at the beginning of execution, put your size all in this method
@@ -114,16 +117,16 @@ public class Sketch extends PApplet {
     //wavePos(xRemember, yRemember);
     for (int waveFor = 0; waveFor < objectArray; waveFor ++){
       wavePos(xArray[waveFor], yArray[waveFor]);
+      
     }
-/*
-    if (frameCount > 180){
-      frameCount = 0;
-      makeWave = false;
-      i = 0;
-    }*/
 
-	// sample code, delete this stuff
   }
+/** The keyPressed method taken from https://happycoding.io/tutorials/processing/input#handling-multiple-keys.
+ * 
+ * 
+ * 
+ * 
+ */
   public void keyPressed(){
     if (key == 119){
       upPressed = true;
@@ -141,19 +144,32 @@ public class Sketch extends PApplet {
       makeWave = 1;
       xRemember = x;
       yRemember = y;
-      i = 0;
+      //i = 0;
+
+      
+      //lengthArray[objectArray] = 0;
 
       xArray[objectArray] = x;
       yArray[objectArray] = y;
       objectArray += 1;
+      
     }
     if (key == CODED){
       if (keyCode == SHIFT){
         x = 400;
         y = 400;
+        i = 0;
+
       }
     }
   }
+
+/** The keyPressed method taken from https://happycoding.io/tutorials/processing/input#handling-multiple-keys.
+ * 
+ * 
+ * 
+ * 
+ */
   
   public void keyReleased() {
     if (key == 119){
@@ -169,8 +185,6 @@ public class Sketch extends PApplet {
       rightPressed = false;
     }
     if (key == 101){
-      // makeWave = 0;
-
     }
   }
   
@@ -189,9 +203,10 @@ public class Sketch extends PApplet {
 
   public void wavePos(int xPos, int yPos){
     if (makeWave == 1){
-      surfaceWave(xPos, yPos, i*i, i);
-      i += 1;
+      //surfaceWave(xPos, yPos, i*i, i);
+      surfaceWave(xPos, yPos, lengthArray[objectArray]*lengthArray[objectArray], lengthArray[objectArray]);
+      //i += 1;
+      lengthArray[objectArray] = lengthArray[objectArray] + 1;
     }
   } 
-
 }
