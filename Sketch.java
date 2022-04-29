@@ -117,7 +117,6 @@ public class Sketch extends PApplet {
     //wavePos(xRemember, yRemember);
     for (int waveFor = 0; waveFor < objectArray; waveFor ++){
       wavePos(xArray[waveFor], yArray[waveFor]);
-      
     }
 
   }
@@ -147,8 +146,7 @@ public class Sketch extends PApplet {
       //i = 0;
 
       
-      //lengthArray[objectArray] = 0;
-
+      
       xArray[objectArray] = x;
       yArray[objectArray] = y;
       objectArray += 1;
