@@ -24,9 +24,15 @@ public class Sketch extends PApplet {
 
   int i = 0;
 
-  boolean makeWave = false;
+  int makeWave = 0;
 
   PImage character;
+
+  int[] xArray = new int[100];
+
+  int[] yArray = new int[100];
+
+  int objectArray = 0;
   
   /**
    * Called once at the beginning of execution, put your size all in this method
@@ -52,7 +58,8 @@ public class Sketch extends PApplet {
     background(60, 200, 190);
     image(character, x - 97, y - 72);  
     
-	  println(upPressed + " " + downPressed + " " + leftPressed + " " +  rightPressed + " " +  x_speed + " " + y_speed + " " + makeWave);
+	  //println(upPressed + " " + downPressed + " " + leftPressed + " " +  rightPressed + " " +  x_speed + " " + y_speed + " " + makeWave);
+    println(xArray + " " + yArray);
 
     if (upPressed) {
       y_speed -= 3.5;
@@ -104,9 +111,16 @@ public class Sketch extends PApplet {
     x = (int) (x + (int) x_speed);
     y = (int) (y + (int) y_speed);
     
-    wavePos(xRemember, yRemember);
-    
-    
+    //wavePos(xRemember, yRemember);
+    for (int waveFor = 0; waveFor < objectArray; waveFor ++){
+      wavePos(xArray[waveFor], yArray[waveFor]);
+    }
+/*
+    if (frameCount > 180){
+      frameCount = 0;
+      makeWave = false;
+      i = 0;
+    }*/
 
 	// sample code, delete this stuff
   }
@@ -115,7 +129,7 @@ public class Sketch extends PApplet {
       upPressed = true;
     }
     if (key == 115){
-      downPressed = true;
+      downPressed = true; 
     }
     if (key == 100){
       leftPressed = true;
@@ -124,10 +138,14 @@ public class Sketch extends PApplet {
       rightPressed = true;
     }
     if (key == 101){
-      //makeWave = true;
+      makeWave = 1;
       xRemember = x;
       yRemember = y;
       i = 0;
+
+      xArray[objectArray] = x;
+      yArray[objectArray] = y;
+      objectArray += 1;
     }
     if (key == CODED){
       if (keyCode == SHIFT){
@@ -151,7 +169,8 @@ public class Sketch extends PApplet {
       rightPressed = false;
     }
     if (key == 101){
-      //makeWave = false;
+      // makeWave = 0;
+
     }
   }
   
@@ -167,18 +186,12 @@ public class Sketch extends PApplet {
         ellipse(xWave, yWave, wavePropogate, wavePropogate);
       }
     }
-  public void wavePos(int xPos, int yPos){
 
-  
-    if (makeWave = true){
+  public void wavePos(int xPos, int yPos){
+    if (makeWave == 1){
       surfaceWave(xPos, yPos, i*i, i);
       i += 1;
     }
-/*
-    if (frameCount > 180){
-      frameCount = 0;
-      makeWave = false;
-      i = 0;
-    }*/
-  }  
+  } 
+
 }
