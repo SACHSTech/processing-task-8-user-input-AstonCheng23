@@ -68,7 +68,7 @@ public class Sketch extends PApplet {
     image(character, x - 97, y - 72);  
     
 	  //println(upPressed + " " + downPressed + " " + leftPressed + " " +  rightPressed + " " +  x_speed + " " + y_speed + " " + makeWave);
-    println(xArray + " " + yArray);
+    //println(xArray[1] + " " + objectArray + " " + yArray[1]);
 
     if (upPressed) {
       y_speed -= 3.5;
@@ -226,6 +226,7 @@ public class Sketch extends PApplet {
     }
   } 
   public void mousePressed(){
+    
     xItemArray[mouseArray] = mouseX;
     yItemArray[mouseArray] = mouseY;
     mouseArray += 1;
