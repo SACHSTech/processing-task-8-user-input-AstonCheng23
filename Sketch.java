@@ -27,14 +27,19 @@ public class Sketch extends PApplet {
   int makeWave = 0;
 
   PImage character;
+  PImage worm;
 
   int[] xArray = new int[100];
-
   int[] yArray = new int[100];
 
   int[] lengthArray = new int[100];
+  
+
+  int[] xItemArray = new int[100];
+  int[] yItemArray = new int[100];
 
   int objectArray = 0;
+  int mouseArray = 0;
 
   
   /**
@@ -52,6 +57,7 @@ public class Sketch extends PApplet {
   public void setup() {
     background(60, 200, 190);
     character = loadImage("Sans Dogeron.png");
+    worm = loadImage("Truffle_Worm_%28NPC%29.png");
   }
 
   /**
@@ -117,6 +123,10 @@ public class Sketch extends PApplet {
     //wavePos(xRemember, yRemember);
     for (int waveFor = 0; waveFor < objectArray; waveFor ++){
       wavePos(xArray[waveFor], yArray[waveFor]);
+    }
+    for (int waveFor2 = 0; waveFor2 < mouseArray; waveFor2 ++){
+      fill(0, 255, 255);
+      image(worm, xItemArray[waveFor2], yItemArray[waveFor2]);
     }
 
   }
@@ -207,4 +217,10 @@ public class Sketch extends PApplet {
       lengthArray[objectArray] = lengthArray[objectArray] + 1;
     }
   } 
+  public void mousePressed(){
+    xItemArray[mouseArray] = mouseX;
+    yItemArray[mouseArray] = mouseY;
+    mouseArray += 1;
+  }
+  
 }
