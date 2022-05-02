@@ -178,7 +178,6 @@ public class Sketch extends PApplet {
  * 
  * 
  */
-  
   public void keyReleased() {
     if (key == 119){
       upPressed = false;
@@ -196,8 +195,14 @@ public class Sketch extends PApplet {
     }
   }
   
-  
   // define other methods down here.
+/**
+ * makes waves at points specified at xWave and yWave. The waveEnd and the wavelength specify the frequency and the wavelength of each wave. 
+ * @param xWave specifies the x position of the wave
+ * @param yWave specifies the x position of the wave
+ * @param waveEnd specifies when the wave ends in the for loop; in other words, how many times the wave repeats.
+ * @param wavelength specifies how many steps the for loop takes, and the wavelength of the wave.
+ */
   public void surfaceWave(int xWave, int yWave, int waveEnd, int wavelength){
     stroke(0);
     noFill();
@@ -208,7 +213,10 @@ public class Sketch extends PApplet {
         ellipse(xWave, yWave, wavePropogate, wavePropogate);
       }
     }
-
+/** The inbetween method that checks if makeWave == 1, which starts to make the surfacewave.
+ * @param xPos Checks for the x position at that time.
+ * @param yPos Checks for the y position at that time. 
+ */
   public void wavePos(int xPos, int yPos){
     if (makeWave == 1){
       //surfaceWave(xPos, yPos, i*i, i);
